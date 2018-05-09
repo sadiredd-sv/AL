@@ -4,8 +4,11 @@ class Group {
     List<String> names;
     int id;
 
-    public Group(List<String> names) {
-        this.names = names;
+    public Group(List<String> names, int id) {
+        this.names = new ArrayList<>();
+        for(String name : names)
+            this.names.add(name);
+        this.id=id;
     }
 }
 
@@ -33,12 +36,11 @@ class AlTest {
                     }
                     set.add(id);
 
-                System.out.println(names.get(id));
+                System.out.println(id);
                 members.add(names.get(id));
             }
 
-            Group ob = new Group(members);
-            System.out.println(ob.names);
+            Group ob = new Group(members,k);
             output.add(ob);
             members.clear();
             System.out.println();
@@ -53,5 +55,9 @@ class AlTest {
         List<String> names = new ArrayList<>(Arrays.asList("A","B","C","D","E","F"));
         List<Group> output = allGroups(names);
 
+        // Print output
+        for(Group g : output) {
+            System.out.println("Group id :" + g.id+",Members :"+g.names);
+        }
     }
 }
